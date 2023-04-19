@@ -19,10 +19,12 @@ import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../../../../public/images/logo.png";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 function Navbarr() {
   const [expand, setExpand] = useState(false);
  const [showVocab, setShowVocab] = useState(false);
+   const router = useRouter();
  const [windowSize, setWindowSize] = useState({
    width: undefined,
    height: undefined,
@@ -70,7 +72,8 @@ function Navbarr() {
             <Image
               src={Logo}
               alt="Picture of the author"
-              style={{ height: "70px", width: "70px" }}
+              style={{ height: "70px", width: "70px", cursor: "pointer" }}
+              onClick={() => router.push("/skills")}
             />
           </div>
           <button className={styles["hamburger"]} onClick={toggleOffcanvas}>
@@ -93,7 +96,6 @@ function Navbarr() {
                 </Nav.Item>
                 <Nav.Item
                   className={styles.burgerDiv}
-                  
                   onClick={() => setShowVocab(!showVocab)}
                 >
                   <p>Vocabulary</p>
@@ -147,11 +149,12 @@ function Navbarr() {
               <div>
                 <Image
                   src={Logo}
+                  onClick={() => router.push("/skills")}
                   alt="Picture of the author"
                   style={{
                     height: "100%",
                     width: "76px",
-
+                    cursor:"pointer",
                     padding: "0px",
                     margin: "0px",
                   }}
@@ -172,31 +175,70 @@ function Navbarr() {
                   className={`${styles["navItems"]} me-auto`}
                   style={{
                     fontFamily: "Sora",
-
+                    position: "relative",
                     width: "100%",
                     display: "flex",
                     justifyContent: "space-evenly",
                     alignItems: "center",
                   }}
                 >
-                  <Nav.Link href="/skills" style={{ paddingTop: "0px" }}>
+                  <Nav.Link
+                    href="/skills"
+                    style={
+                      router.pathname == "/skills"
+                        ? { paddingTop: "0px", color: "#DD4C76" }
+                        : { paddingTop: "0px", color: "black" }
+                    }
+                  >
                     Home
                   </Nav.Link>
-                  <Nav.Link href="blog" style={{ paddingTop: "0px" }}>
+                  <Nav.Link
+                    href="blog"
+                    style={
+                      router.pathname.includes("/blog")
+                        ? { paddingTop: "0px", color: "#DD4C76" }
+                        : { paddingTop: "0px", color: "black" }
+                    }
+                  >
                     Blogs
                   </Nav.Link>
-                  <Nav.Link href="blog" style={{ paddingTop: "0px" }}>
+                  <Nav.Link
+                    href="blog"
+                    style={
+                      router.pathname.includes("/grammer")
+                        ? { paddingTop: "0px", color: "#DD4C76" }
+                        : { paddingTop: "0px", color: "black" }
+                    }
+                  >
                     Grammer
                   </Nav.Link>
-                  <Nav.Link href="#Programs" style={{ paddingTop: "0px" }}>
+                  <Nav.Link
+                    href="#Programs"
+                    style={
+                      router.pathname.includes("/vocab")
+                        ? { paddingTop: "0px", color: "#DD4C76" }
+                        : { paddingTop: "0px", color: "black" }
+                    }
+                  >
                     Vocabulary
                   </Nav.Link>
-                  <Nav.Link href="#Prelims" style={{ paddingTop: "0px" }}>
+                  <Nav.Link
+                    href="#Prelims"
+                    style={
+                      router.pathname.includes("/course")
+                        ? { paddingTop: "0px", color: "#DD4C76" }
+                        : { paddingTop: "0px", color: "black" }
+                    }
+                  >
                     Courses
                   </Nav.Link>
                   <Nav.Link
                     href="#Mains & Interview"
-                    style={{ paddingTop: "0px" }}
+                    style={
+                      router.pathname.includes("/test")
+                        ? { paddingTop: "0px", color: "#DD4C76" }
+                        : { paddingTop: "0px", color: "black" }
+                    }
                   >
                     Test your level
                   </Nav.Link>

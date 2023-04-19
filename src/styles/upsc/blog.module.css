@@ -9,6 +9,10 @@
     margin-bottom: 20px;
     margin-top: 20px;
   }
+   .firstPageBtn{
+     margin: 5px;
+    
+  }
   .category {
     font-style: normal;
     font-weight: 700;
@@ -59,7 +63,8 @@
        display: flex;
           flex-wrap: wrap;
          
-  
+    margin-bottom: 40px;
+        margin-top: 30px;
         justify-content: center;
   }
 }
@@ -141,11 +146,17 @@
   }
   .pageButtonStyle{
        display: flex;
-
+      
+       width:100%;
           flex-wrap: wrap;
           
+        margin-bottom: 40px;
+        margin-top: 30px;
         
-        
+  }
+  .firstPageBtn{
+     margin: 5px;
+    margin-left: 25%;
   }
   .topBigImg:hover{
 

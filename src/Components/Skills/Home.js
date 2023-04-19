@@ -2,10 +2,10 @@ import React from 'react'
 
 import Blog from "./Blog/Blog";
 
-function HomeFinal() {
+function HomeFinal({data}) {
   return (
     <div>
-      <Blog />
+      <Blog data={data} />
     </div>
   );
 }

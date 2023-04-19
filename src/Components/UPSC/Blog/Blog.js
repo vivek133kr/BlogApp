@@ -53,32 +53,19 @@ function Blog({data}) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              width: "90%",
+              cursor:"pointer"
+            
             }}
+            onClick={()=> router.push(`/upsc/blog/${featuredData[3].slug}`)}
           >
-            <div
-              style={{
-                width: "900px",
-                height: "99%",
-         
-              }}
-            >
-              <img
-                src="https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg"
-                alt="Picture of the author"
-                onClick={() => {
-                  router.push(`/upsc/blog/${featuredData[0].slug}`);
-                }}
-                className={`${styles["topBigImg"]}`}
-                style={{
-                  borderRadius: "10px",
-                  width:"100%",
-                  height:"100%",
-                  objectFit:"contain",
-              
-                  transition: "all 0.2s ease-in-out",
-                }}
-              />
-            </div>
+            <Image
+              src={featuredData[3].thumbnail}
+              alt="Picture of the author"
+              width={300}
+              height={300}
+              style={{ borderRadius: "10px", objectFit: "cover" }}
+            />
           </div>
           <div
             style={{
@@ -94,10 +81,6 @@ function Blog({data}) {
           >
             <Image
               src={Images}
-              className={`${styles["topBigImg"]}`}
-              onClick={() => {
-                router.push(`/upsc/blog/${featuredData[1].slug}`);
-              }}
               alt="Picture of the author"
               style={{
                 width: "90%",
@@ -105,7 +88,6 @@ function Blog({data}) {
                 marginLeft: "20px",
                 marginRight: "20px",
                 marginBottom: "10px",
-                transition: "all 0.2s ease-in-out",
                 padding: "0",
                 borderRadius: "10px",
                 maxHeight: `calc(33.33% - 10px)`,
@@ -114,18 +96,13 @@ function Blog({data}) {
             />
             <Image
               src={Images}
-              className={`${styles["topBigImg"]}`}
               alt="Picture of the author"
-              onClick={() => {
-                router.push(`/upsc/blog/${featuredData[2].slug}`);
-              }}
               style={{
                 width: "90%",
                 flex: "1 1 0",
                 marginLeft: "20px",
                 marginRight: "20px",
                 marginBottom: "10px",
-                transition: "all 0.2s ease-in-out",
                 padding: "0",
                 borderRadius: "10px",
                 maxHeight: `calc(33.33% - 10px)`,
@@ -134,17 +111,12 @@ function Blog({data}) {
             />
             <Image
               src={Images}
-              className={`${styles["topBigImg"]}`}
-              onClick={() => {
-                router.push(`/upsc/blog/${featuredData[3].slug}`);
-              }}
               alt="Picture of the author"
               style={{
                 width: "90%",
                 flex: "1 1 0",
                 marginLeft: "20px",
                 marginRight: "20px",
-                transition: "all 0.2s ease-in-out",
                 marginBottom: "0",
                 padding: "0",
                 borderRadius: "10px",
@@ -168,9 +140,9 @@ function Blog({data}) {
                 src={item.thumbnail ? item.thumbnail : Images}
                 alt={item.title}
                 style={{
-                  width:"100%",
-                  height:"100%",
-                  objectFit:"contain"
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
                 }}
                 width={500}
                 height={500}
@@ -204,7 +176,7 @@ function Blog({data}) {
             display: "flex",
             height: "40px",
             backgroundColor: currentPage === 1 ? "#eceff1" : "white",
-            margin: "5px",
+
             color: "black",
             fontFamily: "Roboto",
             fontStyle: "normal",
@@ -215,6 +187,7 @@ function Blog({data}) {
             alignItems: "center",
             border: "2px solid black",
           }}
+          className={`${styles["firstPageBtn"]}`}
           disabled={currentPage === 1}
           onClick={prevPage}
         >

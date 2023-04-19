@@ -65,8 +65,9 @@ function UPSCNavbarr() {
           <div>
             <Image
               src={Logo}
+              onClick={() => router.push("/upsc")}
               alt="Picture of the author"
-              style={{ height: "70px", width: "70px" }}
+              style={{ height: "70px", width: "70px", cursor: "pointer" }}
             />
           </div>
           <button className={styles["hamburger"]} onClick={toggleOffcanvas}>
@@ -139,10 +140,11 @@ function UPSCNavbarr() {
                 <Image
                   src={Logo}
                   alt="Picture of the author"
+                  onClick={() => router.push("/upsc")}
                   style={{
                     height: "100%",
                     width: "76px",
-
+                    cursor:"pointer",
                     padding: "0px",
                     margin: "0px",
                   }}
@@ -152,7 +154,7 @@ function UPSCNavbarr() {
               <div
                 style={{
                   display: "flex",
-                    
+
                   padding: "0px",
                   justifyContent: "center",
                   alignItems: "center",
@@ -163,7 +165,7 @@ function UPSCNavbarr() {
                   className={`${styles["navItems"]} me-auto`}
                   style={{
                     fontFamily: "Sora",
-                    position:"relative",
+                    position: "relative",
                     width: "100%",
                     display: "flex",
                     justifyContent: "space-evenly",
@@ -240,7 +242,6 @@ function UPSCNavbarr() {
                   >
                     Check Prep
                   </Nav.Link>
-                  
                 </Nav>
               </div>
             </div>

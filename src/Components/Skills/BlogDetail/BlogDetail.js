@@ -8,7 +8,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import styles from "../../../styles/skills/detailBlog.module.css"
 import { Button } from 'react-bootstrap'
 import BlogForms from '../BlogForm/BlogForm';
-export default function BlogDetails() {
+import { useRouter } from 'next/router';
+export default function BlogDetails({post, data}) {
+  let newdata = data.results.slice(0, 3);
+  const router = useRouter();
   return (
     <div className={styles["headBlog"]}>
       <div className={styles["upperDiv"]}>
@@ -19,10 +22,7 @@ export default function BlogDetails() {
           </div>
           <div className={styles["lineDiv"]}></div>
           <div className={styles["secondPara"]}>
-            <h1>
-              Innovative Solutions for Sustainable Forest Management and
-              Reforestation
-            </h1>
+            <h1>{post.title}</h1>
           </div>
           <div className={styles["mainBlogHome"]}>
             <div className={styles["blogHome"]}>
@@ -46,15 +46,17 @@ export default function BlogDetails() {
                 }}
                 className={styles["datePara"]}
               >
-                21 Mar 2023
+                {post.publish_date}
               </p>
             </div>
           </div>
           <div className={styles["thumbnailImg"]}>
             <Image
-              style={{ width: "100%" }}
-              src={Thumbnail}
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              src={post.thumbnail ? post.thumbnail : Thumbnail}
               alt="Picture of the author"
+              width={500}
+              height={500}
             />
           </div>
           <div
@@ -70,28 +72,16 @@ export default function BlogDetails() {
               }}
             >
               <div className="pt-3" style={{ width: "90%" }}>
-                <p
-                  style={{ fontFamily: "Roboto" }}
-                  className="font-normal font-size-18 leading-29 flex items-center "
-                  //   dangerouslySetInnerHTML={{ __html: title }}
-                >
-                  On a car journey through spiraling roads in Himalayan pine
-                  forests, we encountered a rare and sudden jam in a remote
-                  area. When we got down, we saw much ahead the lower slope was
-                  burning, some cars returning and people guessing how the fire
-                  started.
-                </p>
-                <h2 className="font-semibold">Sustainable Energy : </h2>
-                <p
-                  style={{ fontFamily: "Roboto" }}
-                  className="font-normal font-size-18 leading-29 flex items-center "
-                >
-                  The dhaba-wala was throwing water with buckets on the trees on
-                  fire to save their little setup. By the time I reached my
-                  village, neither people were home nor there was any forest
-                  fire. All of them had averted the spreading flames by a
-                  daylong emptying of water buckets into the forest.
-                </p>
+                <div
+                  style={{
+                    fontFamily: "Roboto",
+                    flexDirection: "column",
+                    textAlign: "left",
+                  }}
+                  className={` ${styles["mainP"]} font-normal font-size-18 leading-29 flex `}
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                ></div>
+
                 <h3
                   className="font-semibold  "
                   style={{
@@ -100,7 +90,7 @@ export default function BlogDetails() {
                     padding: "1%",
                   }}
                 >
-                  Writer Name
+                  {post.author.name}
                 </h3>
                 <div className="mt-3">
                   <Image
@@ -113,91 +103,49 @@ export default function BlogDetails() {
                   style={{ fontFamily: "Roboto" }}
                   className="font-normal mt-3 font-size-18 leading-29 flex items-center "
                 >
-                  On a car journey through spiraling roads in Himalayan pine
-                  forests, we encountered a rare and sudden jam in a remote
-                  area. When we got down, we saw much ahead the lower slope was
-                  burning, some cars returning and people guessing how the fire
-                  started.
+                  {post.author.designation}
                 </p>
               </div>
             </div>
           </div>
         </div>
         <div className={styles["secondDiv"]}>
-          <div
-            style={{ height: "90%", width: "90%" }}
-          >
+          <div style={{ height: "90%", width: "90%" }}>
             <h3 className={styles["secondDivH"]}>Similar Blog Posts</h3>
-            <div>
-              <Image
-                style={{ width: "100%", borderRadius: "20px" }}
-                src={Thumbnail}
-                alt="Picture of the author"
-              />
 
-              <p className={styles["boxHeading"]}>
-                Innovative Solutions for Sustainable Forest Management and
-                Reforestation
-              </p>
-              <div className={`flex ${styles["dateDiv"]} `}>
-                <div>
-                  {" "}
-                  <Image src={Date} alt="Picture of the author" />
+            {newdata.map((item, i) => {
+              return (
+                <div
+                  key={i}
+                  style={{ marginTop: "30px", cursor: "pointer" }}
+                  onClick={() => router.push(`/skills/blog/${item.slug}`)}
+                >
+                  <Image
+                    style={{ width: "100%", borderRadius: "20px" }}
+                    src={Thumbnail}
+                    alt="Picture of the author"
+                  />
+                  <p className={styles["boxHeading"]}>{item.title}</p>
+                  <div className={`flex ${styles["dateDiv"]} `}>
+                    <div>
+                      <Image src={Date} alt="Date" />
+                    </div>
+                    <p
+                      style={{
+                        padding: "0px",
+                        margin: "0px",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      {item.publish_date ? item.publish_date : "21-Mar-2023"}
+                    </p>
+                  </div>
                 </div>
-
-                <p style={{ padding: "0px", margin: "0px", marginLeft: "2%" }}>
-                  21 March, 2023
-                </p>
-              </div>
-            </div>
-            <div style={{ marginTop: "30px" }}>
-              <Image
-                style={{ width: "100%", borderRadius: "20px" }}
-                src={Thumbnail}
-                alt="Picture of the author"
-              />
-
-              <p className={styles["boxHeading"]}>
-                Innovative Solutions for Sustainable Forest Management and
-                Reforestation
-              </p>
-              <div className={`flex ${styles["dateDiv"]} `}>
-                <div>
-                  {" "}
-                  <Image src={Date} alt="Picture of the author" />
-                </div>
-
-                <p style={{ padding: "0px", margin: "0px", marginLeft: "2%" }}>
-                  21 March, 2023
-                </p>
-              </div>
-            </div>
-            <div style={{ marginTop: "30px" }}>
-              <Image
-                style={{ width: "100%", borderRadius: "20px" }}
-                src={Thumbnail}
-                alt="Picture of the author"
-              />
-
-              <p className={styles["boxHeading"]}>
-                Innovative Solutions for Sustainable Forest Management and
-                Reforestation
-              </p>
-              <div className={`flex ${styles["dateDiv"]} `}>
-                <div>
-                  {" "}
-                  <Image src={Date} alt="Picture of the author" />
-                </div>
-
-                <p style={{ padding: "0px", margin: "0px", marginLeft: "2%" }}>
-                  21 March, 2023
-                </p>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>
-
     </div>
   );
 }

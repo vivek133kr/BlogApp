@@ -1,6 +1,6 @@
 @media only screen and (max-width: 1000px) {
   .imagesStyles {
-    height: 144.15px;
+    height: 200.15px;
     width: 100%;
   }
   .imageDiv {
@@ -8,6 +8,10 @@
     border-bottom: 1px solid black;
     margin-bottom: 20px;
     margin-top: 20px;
+  }
+   .firstPageBtn{
+     margin: 5px;
+    
   }
   .category {
     font-style: normal;
@@ -54,6 +58,14 @@
   }
   .imageBox {
     display: none;
+  }
+    .pageButtonStyle{
+       display: flex;
+          flex-wrap: wrap;
+         
+    margin-bottom: 40px;
+        margin-top: 30px;
+        justify-content: center;
   }
 }
 @media only screen and (min-width: 1001px) {
@@ -102,10 +114,15 @@
     align-items: center;
   }
   .imageBox {
+     
     display: flex;
     width: 90%;
     margin-top: 2%;
+    margin-bottom: 30px;
+
     height: 500px;
+  
+  
   }
   
   .imageDiv {
@@ -113,14 +130,15 @@
    
     margin-bottom: 20px;
     display: flex;
-    
+
     cursor: pointer;
     margin-top: 20px;
   }
+  
     .imagesStyles {
     height: 144.15px;
     width:313px;
-  
+   
   }
   
   .contentDiv{
@@ -130,4 +148,25 @@
     padding-left:20px;
      border-bottom: 1px solid black;
   }
+  .pageButtonStyle{
+       display: flex;
+      
+       width:100%;
+          flex-wrap: wrap;
+          
+        margin-bottom: 40px;
+        margin-top: 30px;
+        
+  }
+  .firstPageBtn{
+     margin: 5px;
+    margin-left: 25%;
+  }
+  .topBigImg:hover{
+
+  transform: scale(1.05);
+  cursor: pointer;
+
+  }
+  
 }

@@ -54,7 +54,7 @@ const router = useRouter()
             </div>
             <div className={styles["thumbnailImg"]}>
               <Image
-                style={{ width: "100%", height:"100%", objectFit:'contain' }}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
                 src={post.thumbnail ? post.thumbnail : Thumbnail}
                 alt="Picture of the author"
                 width={500}

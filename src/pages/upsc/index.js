@@ -17,7 +17,7 @@ export default function Home({data}) {
     </div>
   );
 }
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const response = await fetch(
     "http://staging.joshtalks.org:9002/api/skill/v1/blogs/"
   );
