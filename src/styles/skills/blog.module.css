@@ -119,8 +119,10 @@
     width: 90%;
     margin-top: 2%;
     margin-bottom: 30px;
-
+    justify-content: center;
+    align-items: center;
     height: 500px;
+    
   
   
   }
@@ -138,7 +140,7 @@
     .imagesStyles {
     height: 144.15px;
     width:313px;
-   
+  
   }
   
   .contentDiv{

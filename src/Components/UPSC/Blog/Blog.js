@@ -1,49 +1,45 @@
-import React, { useState } from 'react'
-import styles from "../../../styles/upsc/blog.module.css"
+import React, { useState } from "react";
+import styles from "../../../styles/upsc/blog.module.css";
 import Card from "react-bootstrap/Card";
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
 import Images from "../../../../public/images/newimg.png";
-import Date from "../../../../public/images/Vector.png"
+import Date from "../../../../public/images/Vector.png";
 
+function Blog({ data }) {
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const featuredData = data.results.slice(0, 4);
+  function goToPage(page) {
+    setCurrentPage(page);
+  }
 
+  function nextPage() {
+    setCurrentPage(currentPage + 1);
+  }
 
+  function prevPage() {
+    setCurrentPage(currentPage - 1);
+  }
 
-function Blog({data}) {
+  const pageSize = 1; // set page size to 5
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentData = data.results.slice(startIndex, endIndex);
 
- const [currentPage, setCurrentPage] = useState(1);
+  const pageCount = Math.ceil(data.results.length / pageSize);
 
- const featuredData = data.results.slice(0,4)
- function goToPage(page) {
-   setCurrentPage(page);
- }
+  // generate an array of page numbers to show in pagination controls
+  const pageNumbers = [];
+  for (let i = 1; i <= pageCount; i++) {
+    pageNumbers.push(i);
+  }
+  const router = useRouter();
 
- function nextPage() {
-   setCurrentPage(currentPage + 1);
- }
-
- function prevPage() {
-   setCurrentPage(currentPage - 1);
- }
-
- const pageSize = 1; // set page size to 5
- const startIndex = (currentPage - 1) * pageSize;
- const endIndex = startIndex + pageSize;
- const currentData = data.results.slice(startIndex, endIndex);
-
- const pageCount = Math.ceil(data.results.length / pageSize);
-
- // generate an array of page numbers to show in pagination controls
- const pageNumbers = [];
- for (let i = 1; i <= pageCount; i++) {
-   pageNumbers.push(i);
- }
- const router = useRouter();
- 
-    const para ="On a car journey through spiraling roads in Himalayan pine forests, we encountered a rare and sudden jam in a remote area. When we got down, we saw new pictures";
+  const para =
+    "On a car journey through spiraling roads in Himalayan pine forests, we encountered a rare and sudden jam in a remote area. When we got down, we saw new pictures";
   return (
     <div className={styles["mainTop"]}>
       {data.results.length > 0 && (
@@ -54,17 +50,24 @@ function Blog({data}) {
               justifyContent: "center",
               alignItems: "center",
               width: "90%",
-              cursor:"pointer"
-            
+              height: "496px",
+
+              cursor: "pointer",
             }}
-            onClick={()=> router.push(`/upsc/blog/${featuredData[3].slug}`)}
+            onClick={() => router.push(`/upsc/blog/${featuredData[3].slug}`)}
           >
             <Image
               src={featuredData[3].thumbnail}
               alt="Picture of the author"
               width={300}
               height={300}
-              style={{ borderRadius: "10px", objectFit: "cover" }}
+              style={{
+                borderRadius: "10px",
+                objectFit: "contain",
+                border: "1px solid black",
+                width: "100%",
+                height: "100%",
+              }}
             />
           </div>
           <div
@@ -80,48 +83,60 @@ function Blog({data}) {
             }}
           >
             <Image
-              src={Images}
+              src={featuredData[3].thumbnail}
               alt="Picture of the author"
+              width={300}
+              height={300}
               style={{
                 width: "90%",
                 flex: "1 1 0",
                 marginLeft: "20px",
                 marginRight: "20px",
+                cursor: "pointer",
+                border: "1px solid black",
                 marginBottom: "10px",
                 padding: "0",
                 borderRadius: "10px",
                 maxHeight: `calc(33.33% - 10px)`,
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
             <Image
-              src={Images}
+              src={featuredData[3].thumbnail}
               alt="Picture of the author"
+              width={300}
+              height={300}
               style={{
                 width: "90%",
                 flex: "1 1 0",
                 marginLeft: "20px",
                 marginRight: "20px",
+                border: "1px solid black",
+                cursor: "pointer",
                 marginBottom: "10px",
                 padding: "0",
                 borderRadius: "10px",
                 maxHeight: `calc(33.33% - 10px)`,
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
             <Image
-              src={Images}
+              src={featuredData[3].thumbnail}
               alt="Picture of the author"
+              width={300}
+              height={300}
               style={{
                 width: "90%",
                 flex: "1 1 0",
                 marginLeft: "20px",
                 marginRight: "20px",
-                marginBottom: "0",
+                cursor: "pointer",
+                marginBottom: "10px",
                 padding: "0",
+                border: "1px solid black",
                 borderRadius: "10px",
                 maxHeight: `calc(33.33% - 10px)`,
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
           </div>
@@ -263,4 +278,4 @@ function Blog({data}) {
   );
 }
 
-export default Blog
+export default Blog;

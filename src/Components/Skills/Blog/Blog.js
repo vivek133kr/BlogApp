@@ -1,18 +1,13 @@
-import React , {useState} from 'react'
-import styles from "../../../styles/skills/blog.module.css"
+import React, { useState } from "react";
+import styles from "../../../styles/skills/blog.module.css";
 import Card from "react-bootstrap/Card";
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
 import Images from "../../../../public/images/newimg.png";
-import Date from "../../../../public/images/Vector.png"
-import Pagination from '../Pagination/Pagination';
-
-
-
-
-
+import Date from "../../../../public/images/Vector.png";
+import Pagination from "../Pagination/Pagination";
 
 function Blog({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +25,7 @@ function Blog({ data }) {
     setCurrentPage(currentPage - 1);
   }
 
-  const pageSize = 1; // set page size to 5
+  const pageSize = 3; // set page size to 5
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const currentData = data.results.slice(startIndex, endIndex);
@@ -56,6 +51,8 @@ function Blog({ data }) {
               justifyContent: "center",
               alignItems: "center",
               width: "90%",
+              height: "480px",
+
               cursor: "pointer",
             }}
             onClick={() => router.push(`/skills/blog/${featuredData[3].slug}`)}
@@ -65,7 +62,13 @@ function Blog({ data }) {
               alt="Picture of the author"
               width={300}
               height={300}
-              style={{ borderRadius: "10px", objectFit: "cover" }}
+              style={{
+                borderRadius: "10px",
+                objectFit: "contain",
+                border: "1px solid black",
+                width: "100%",
+                height: "100%",
+              }}
             />
           </div>
           <div
@@ -73,17 +76,16 @@ function Blog({ data }) {
               width: "50%",
               height: "100%",
 
-              padding: "0px",
+              padding: "8px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: "flex-end",
+              alignItems: "center",
             }}
           >
             <Image
               src={featuredData[3].thumbnail}
               alt="Picture of the author"
-              onClick={() => router.push(`/skills/blog/${featuredData[3].slug}`)}
               width={300}
               height={300}
               style={{
@@ -91,43 +93,51 @@ function Blog({ data }) {
                 flex: "1 1 0",
                 marginLeft: "20px",
                 marginRight: "20px",
+                cursor: "pointer",
+                border: "1px solid black",
                 marginBottom: "10px",
                 padding: "0",
                 borderRadius: "10px",
-                cursor:"pointer",
-
                 maxHeight: `calc(33.33% - 10px)`,
                 objectFit: "contain",
               }}
             />
             <Image
-              src={Images}
+              src={featuredData[3].thumbnail}
               alt="Picture of the author"
+              width={300}
+              height={300}
               style={{
                 width: "90%",
                 flex: "1 1 0",
                 marginLeft: "20px",
                 marginRight: "20px",
+                border: "1px solid black",
+                cursor: "pointer",
                 marginBottom: "10px",
                 padding: "0",
                 borderRadius: "10px",
                 maxHeight: `calc(33.33% - 10px)`,
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
             <Image
-              src={Images}
+              src={featuredData[3].thumbnail}
               alt="Picture of the author"
+              width={300}
+              height={300}
               style={{
                 width: "90%",
                 flex: "1 1 0",
                 marginLeft: "20px",
                 marginRight: "20px",
-                marginBottom: "0",
+                cursor: "pointer",
+                marginBottom: "10px",
                 padding: "0",
+                border: "1px solid black",
                 borderRadius: "10px",
                 maxHeight: `calc(33.33% - 10px)`,
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
           </div>
@@ -149,6 +159,7 @@ function Blog({ data }) {
                   width: "100%",
                   height: "100%",
                   objectFit: "contain",
+                
                 }}
                 width={500}
                 height={500}

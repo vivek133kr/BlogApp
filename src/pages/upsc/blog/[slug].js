@@ -36,6 +36,7 @@ export async function getStaticProps({ params }) {
       post: post,
       data: data,
     },
+    revalidate: 10,
   };
 }
 export async function getStaticPaths() {
@@ -51,6 +52,5 @@ export async function getStaticPaths() {
   // Return the array of slugs as paths
   return { paths, fallback: false };
 }
-
 
 export default Blog;
